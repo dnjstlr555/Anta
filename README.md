@@ -1,12 +1,13 @@
 # Anta
 An atomic Network Attached Storage Named anTA<br>
+
 ![Nope](/preview.gif "Preview")
 
 # What is it?
 It's a simple file server, it provide files to user using Hypertext Transfer Protocol (HTTP)<br>
 
-# Feature
-No need extra settings or anything.
+# Install
+Install lastest node.js (https://nodejs.org/en/) and excute index.js using node.js
 
 # Command
 add (Real Address) (Fake Address) - add address to shared folder list <br>
