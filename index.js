@@ -24,6 +24,8 @@ let params;
 	// replace front folder to real adress
 	// verify these
 	// send
+	
+	
 
 var folderlist = {};
 function __log(info,text)
@@ -65,7 +67,7 @@ const server = http.createServer(function (request, response)
 				{
 					ad = path.join(ad, rq[rest]);
 				}
-				__log('dev',ad);
+				__log('dev',ad); //**********ad must be not shown!!!!! its a real directory*********//
 				fs.exists(ad, (ex) =>  //is exist?
 				{
 					if(ex) 
@@ -84,12 +86,12 @@ const server = http.createServer(function (request, response)
 									var stats = fs.statSync(finalres)
 									if (stats.isDirectory())
 									{
-										response.write(`dir: ${__files[i]}<br>`);
+										response.write(`<a href="${request.url}/${__files[i]}">dir: ${__files[i]}</a><br>`);
 										directories.push(__files[i]);
 									}
 									else 
 									{
-										response.write(`file: ${__files[i]}<br>`);
+										response.write(`<a href="${request.url}/${__files[i]}">file: ${__files[i]}</a><br>`);
 										files.push(__files[i]);
 									}
 								}
@@ -189,7 +191,11 @@ stdin.addListener("data", function(d) { //input
 		{
 			__log('error','It\'s not vaild value.')
 		}
-		else 
+		else if (folderlist[get[2]])
+		{
+			__log('info',`${get[1]} Was already listed  ${get[2]}`)
+		}
+		else
 		{
 			folderlist[get[2]] = get[1]; //fake : real
 			__log('info',`${get[1]} Was shared to ${get[2]}`)
