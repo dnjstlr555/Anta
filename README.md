@@ -15,4 +15,4 @@ get - show list of shared folder <br>
 del (Fake Address) - delete given address from the list <br>
 sav - save current settings <br>
 
-## Do not use this script as commercial or iligal purpose, It's your own risk
+## Do not use this script as iligal purpose, It's your own risk
