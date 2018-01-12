@@ -38,7 +38,10 @@ function syncafter(res)
 	res.end();
 }
 
-var settings = JSON.parse(fs.readFileSync('server.cfg', 'utf8'));
+var settings;
+var f = fs.readFile('file', 'utf8', function (err, data) {
+  if (!err) settings = JSON.parse(data);
+});
 if(settings)
 {
 	folderlist = settings;
