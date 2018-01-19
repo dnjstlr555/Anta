@@ -51,11 +51,9 @@ const server = http.createServer(function (request, response)
 {
 	__log('Network', `${request.method} ${request.url} from ${request.connection.remoteAddress}`);
     //console.log('request ', request.url, ' from', request.connection.remoteAddress);
-	var rq = request.url.split('/');
+	var rq = decodeURI(request.url).split('/');
 	var par = request.url.split('?');
-	__log('dev', 'got ' + rq[1] + ' is ' + folderlist[rq[1]]);
 	params = new URLSearchParams(par[1]);
-	__log('dev', rq.length);
 	var files = [];
 	var directories = [];
 	
@@ -65,7 +63,7 @@ const server = http.createServer(function (request, response)
 		{
 			if(exists) 
 			{
-				var ad = folderlist[rq[1]] //join rest folder
+				var ad = folderlist[rq[1]]; //join rest folder
 				for(var rest=2;rest<rq.length;rest++) 
 				{
 					ad = path.join(ad, rq[rest]);
@@ -190,35 +188,37 @@ stdin.addListener("data", function(d) { //input
 	var get = d.toString().trim().split(" ");
 	if (get[0] == "add")
 		{
-		if (get[1] == null || get[2] == null) 
-		{
-			__log('error','It\'s not vaild value.')
+			var par = d.toString().trim().split(`"`);
+			if (par[1] == null || par[3] == null) 
+			{
+				__log('error','It\'s not vaild value.')
+			}
+			else if (folderlist[par[3]])
+			{
+				__log('info',`${par[1]} Was already listed  ${par[3]}`)
+			}
+			else
+			{
+				folderlist[par[3]] = par[1]; //fake : real
+				__log('info',`${par[1]} Was shared to ${par[3]}`)
+			}
 		}
-		else if (folderlist[get[2]])
-		{
-			__log('info',`${get[1]} Was already listed  ${get[2]}`)
-		}
-		else
-		{
-			folderlist[get[2]] = get[1]; //fake : real
-			__log('info',`${get[1]} Was shared to ${get[2]}`)
-		}
-	}
 	if (get[0] == "del")
 	{
+		var par = d.toString().trim().split(`"`);
 		for(var folder in folderlist)
 		{
 			__log('info',folder, folder.keys);
 		}
 		
-		if(folderlist[get[1]])
+		if(folderlist[par[1]])
 		{
-			delete folderlist[get[1]]; //undefined? delete?
-			__log('alert',`${get[0]} was deleted`);
+			delete folderlist[par[1]]; //undefined? delete?
+			__log('alert',`${par[1]} was deleted`);
 		}
 		else
 		{
-			__log('alert',`${get[0]} was not exist`);
+			__log('alert',`${par[1]} was not exist`);
 		}
 	}
 	if (get[0] == "get")
