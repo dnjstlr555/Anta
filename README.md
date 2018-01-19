@@ -10,9 +10,9 @@ It's a simple file server, it provide files to user using Hypertext Transfer Pro
 Install lastest node.js (https://nodejs.org/en/) and excute index.js using node.js
 
 # Command
-add (Real Address) (Fake Address) - add address to shared folder list <br>
+add "(Real Address)" "(Fake Address)" - add address to shared folder list (Ex : add "D:\Super Mario" "Mario Number One") <br>
 get - show list of shared folder <br>
-del (Fake Address) - delete given address from the list <br>
+del "(Fake Address)" - delete given address from the list <br>
 sav - save current settings <br>
 
 ## Do not use this script as iligal purpose, It's your own risk
