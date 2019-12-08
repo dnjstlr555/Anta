@@ -1,5 +1,5 @@
 # Anta
-An atomic Network Attached Storage Named anTA<br>
+atomic network attached storage<br>
 
 ![Nope](/preview.gif "Preview")
 
@@ -14,5 +14,3 @@ add "(Real Address)" "(Fake Address)" - add address to shared folder list (Ex : 
 get - show list of shared folder <br>
 del "(Fake Address)" - delete given address from the list <br>
 sav - save current settings <br>
-
-## Do not use this script as iligal purpose, It's your own risk
